@@ -1,1 +1,24 @@
+Contrainte du projet, generer un livrable interpretqble par .NET.
+
+cad: Je pense qu'il faut serialiser le modele.
+
+Technologies:
+    Algorithme YOLO disponible avec :
+        - keras https://machinelearningmastery.com/how-to-perform-object-detection-with-yolov3-in-keras/
+            . avantage d'avoir une methode pour sauvegarder le modele en .h5 https://www.tensorflow.org/guide/keras/save_and_serialize
+        - opencv https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/
+            . je sais pas comment serialiser le modele
+
 Quelles sont les taches ?
+
+1. charger les images
+ploter les images
+nettoyer les images ?
+2. creer le modele
+3. entrainer le modele
+4. ploter le modele
+5. ameliorer le modele
+6. generer le livrable
+
+Proposition: fork le projet de reconnaissance de lettre du prof Thomas 
+le git en question https://github.com/Authfix/nuage-compta-data-science-exercice
