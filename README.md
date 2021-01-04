@@ -1,1 +1,1 @@
-"# Reco_image" 
+La société "Little Sister" est une entreprise spécialisée dans le secteur de la vidéosurveillance. Pour leur prochain produit, elle souhaite développer un algorithme d'intelligence artificielle afin de détecter les différents éléments présents sur une image. Elle vous sollicite afin de l'aider à réaliser le système.
