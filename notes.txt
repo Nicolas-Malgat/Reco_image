@@ -26,3 +26,16 @@ le git en question https://github.com/Authfix/nuage-compta-data-science-exercice
 __________________________________________________________________________________________
 
 On a discute avec thomas, pourquoi pas analyser seulement une dimension de l'image (RGB), c'est du bonus car pas vraiment besoin.
+
+a tester
+deux familles diffrentes, 
+deux familles proches et 
+expliquer pourquoi l'algo confond, 
+trouver la solution en modifiant le modele
+
+plot
+	Kernel (3, 5, 7, 15)
+	max pooling (petite)
+	convolution (grande)
+
+hidden layer, filtre interessant ? (Thomas cassagne)
