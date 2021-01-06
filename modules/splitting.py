@@ -1,60 +1,86 @@
 import os, shutil
 import subprocess
+from random import sample
 
 class Splitting():
 
     @staticmethod
-    def split(dossier_racine, dossiers_a_garder, target, explorer = False):
-        """ Copie les fichiers donnes dans le chemin target
+    def list_dossiers(dossier):
+        dossiers = os.listdir(dossier)
+        print(dossiers)
+
+    @staticmethod
+    def copie_dossiers(dossier_racine, dossiers_a_garder, dossier_cible, nb_images, explorer = False):
+        """ Copie les fichiers donnes dans le dossier_cible
 
         Args:
             dossier_racine (str): chemin du dossier contenant les dossiers des images
             dossiers_a_garder (list<str>): dossiers d'images a garder
-            target (str): chemin dans lequel on copie les dossiers a garder
-            explorer (boolean): defini si target est ouvert dans l'explorateur
+            dossier_cible (str): chemin dans lequel on copie les dossiers a garder
+            explorer (boolean): defini si dossier_cible s'ouvre dans l'explorateur
 
         Raises:
             Exception: un des dossier de dossiers_a_garder n'existe pas
         """
 
-        Splitting.__test_path(target)
+        dossier_cible = os.path.abspath(dossier_cible)
 
-        for dossier in dossiers_a_garder:
+        if Splitting.__create_path(dossier_cible):
+
+            try:
+                for dossier in dossiers_a_garder:
+                    print('Creation du dossier ' + dossier)
+                    
+                    if dossier in os.listdir(dossier_racine):
+                        sous_dossier_racine = dossier_racine + os.sep + dossier
+                        sous_dossier_cible = dossier_cible + os.sep + dossier
+                        os.mkdir(sous_dossier_cible)
+                        Splitting.__copy_folder(sous_dossier_racine, sous_dossier_cible, nb_images)
+                    else:
+                        raise Exception('Dossier non trouve' + str(dossier))
+            except Exception as e:
+                os.removedirs(dossier_cible)
+                raise Exception(e)
             
-            if dossier in os.listdir(dossier_racine):
-                Splitting.__copy_folder(dossier_racine + os.sep + dossier, target)
-            else:
-                raise Exception('Dossier non trouve' + str(dossier))
-        
-        if explorer:
-            target = os.path.abspath(target)
-            subprocess.Popen(f'explorer /select,"{target}"')
+            if explorer:
+                subprocess.Popen(f'explorer /select,"{dossier_cible}"')
 
     @staticmethod
-    def __test_path(target):
-        if os.path.exists(target) == False:
+    def __create_path(dossier):
+        if os.path.exists(dossier) == False:
             try:
-                os.makedirs(target)
+                os.makedirs(dossier)
             except OSError:
-                print (f"Creation of the directory {target} failed")
+                print (f"Creation of the directory {dossier} failed")
                 exit(1)
             else:
-                print (f"Successfully created the directory {target}")
+                print (f"Successfully created the directory {dossier}")
+                return True
+        else:
+            print(f'Le dossier {dossier} existe déjà !')
+            return False
 
     @staticmethod
-    def __copy_folder(src, dst):
-        for item in os.listdir(src):
-            s = os.path.join(src, item)
-            d = os.path.join(dst, item)
-            if os.path.isfile(s):
-                shutil.copy(s, d)
+    def __copy_folder(dossier, dossier_cible, nb_images):
+
+        images = os.listdir(dossier)
+        images = sample(images, nb_images)
+
+        for image in images:
+            image_origine = os.path.join(dossier, image)
+            image_cible = os.path.join(dossier_cible, image)
+
+            if os.path.isfile(image_origine):
+                shutil.copy(image_origine, image_cible)
 
 if __name__ == "__main__":
 
     # print(os.getcwd())
 
     dossier_racine = '../datas/RAW/train'
-    dossiers_a_garder = ['apple', 'bee']
-    target = '../datas/RAW/train_' + "_".join(dossiers_a_garder)
+    dossiers_a_garder = ['bus', 'tank']
+    nom_dossier_racine = dossier_racine.split('/')[-1]
+    dossier_cible = '../datas/RAW/' + nom_dossier_racine + '_' + "_".join(dossiers_a_garder)
 
-    Splitting.split(dossier_racine, dossiers_a_garder, target)
+    Splitting.copie_dossiers(dossier_racine, dossiers_a_garder, dossier_cible, 250, True)
+    # Splitting.list_dossiers(dossier_racine)
