@@ -10,7 +10,7 @@ class Splitting():
         print(dossiers)
 
     @staticmethod
-    def copie_dossiers(dossier_racine, dossiers_a_garder, dossier_cible, nb_images, explorer = False):
+    def copie_dossiers(dossier_racine, dossiers_a_garder, nb_images, explorer = False):
         """ Copie les fichiers donnes dans le dossier_cible
 
         Args:
@@ -22,7 +22,9 @@ class Splitting():
         Raises:
             Exception: un des dossier de dossiers_a_garder n'existe pas
         """
-
+        
+        path_list = dossier_racine.split('/')
+        dossier_cible = os.sep.join(path_list[:-1]) + os.sep + path_list[-1] + "_" + "_".join(dossiers_a_garder)
         dossier_cible = os.path.abspath(dossier_cible)
 
         if Splitting.__create_path(dossier_cible):
@@ -79,8 +81,12 @@ if __name__ == "__main__":
 
     dossier_racine = '../datas/RAW/train'
     dossiers_a_garder = ['bus', 'tank']
-    nom_dossier_racine = dossier_racine.split('/')[-1]
-    dossier_cible = '../datas/RAW/' + nom_dossier_racine + '_' + "_".join(dossiers_a_garder)
+    dossier_cible = '../datas/RAW/' + dossier_racine.split('/')[-1] + '_' + "_".join(dossiers_a_garder)
 
-    Splitting.copie_dossiers(dossier_racine, dossiers_a_garder, dossier_cible, 250, True)
+    Splitting.copie_dossiers(
+        '../datas/RAW/train',
+        ['bus', 'tank'],
+        250,
+        True
+    )
     # Splitting.list_dossiers(dossier_racine)
