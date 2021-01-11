@@ -1,1 +1,54 @@
-La société "Little Sister" est une entreprise spécialisée dans le secteur de la vidéosurveillance. Pour leur prochain produit, elle souhaite développer un algorithme d'intelligence artificielle afin de détecter les différents éléments présents sur une image. Elle vous sollicite afin de l'aider à réaliser le système.
+
+<p  align="center">
+<h1  align="center">Little Sister</h3>
+</p>
+
+## Sommaire
+
+*  [Contexte du projet](#contexte-du-projet)
+
+*  [Commencer](#commencer)
+
+*  [Utilisation](#utilisation)
+
+*  [Auteurs](#auteurs)
+
+
+## Contexte du projet
+
+
+La société "Little Sister" souhaite développer un nouveau type de caméras de surveillance pour l'espace publique.
+
+Elle souhaite mettre en avant une fonctionnalité de reconnaissance d'éléments sur une image afin de pouvoir identifier des cas, des situations qui peuvent survenir dans la vie de tous les jours. Pour se faire,  **elle possède une banque d'images de références qui peuvent servir à entrainer l'IA** (Ciphar 100) .
+
+Le but est de  **fournir un livrable**  qui pourra être  **intégré dans leur système embarqué qui est écrit en Microsoft .NET (dotnet 5).**  La société vous laisse libre quant au choix du format de fichier à exploiter, tant que celui-ci est compatible avec son système.
+
+## Commencer
+
+Pour avoir une copie locale et lancer le programme, suivez ces étapes.
+
+### Installation
+
+1. Cloner le répertoire
+```git
+git clone https://github.com/Nicolas-Malgat/Reco_image.git
+```
+2. Créer un environnement conda avec
+```bash
+conda create --name <env> --file environment.txt
+```
+## Utilisation
+
+- Lancer [main.ipynb](https://github.com/Nicolas-Malgat/Reco_image/blob/main/main.ipynb "main.ipynb")
+	- Ce notebook va générer le modèle ( [model_maxime.h5](https://github.com/Nicolas-Malgat/Reco_image/blob/main/model_maxime.h5 "model_maxime.h5") ) pour l'évaluation des images.
+
+- Lancer [analyse_image.ipynb](https://github.com/Nicolas-Malgat/Reco_image/blob/main/analyse_image.ipynb)
+	- Ce notebook charge une image dans la première cellule,
+	   puis se découpe en deux parties:
+		- La première donne une prédiction sur l'image
+		- La seconde permet d'ajuster si nécessaire les filtres sur l'image
+
+## Auteurs
+
+Maxime Veysseyre
+Nicolas Malgat
