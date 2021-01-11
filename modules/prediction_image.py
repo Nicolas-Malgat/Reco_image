@@ -19,8 +19,8 @@ def resize_image(img, size=(32,32)):
     x_pos = (dif - w)//2
     y_pos = (dif - h)//2
 
-    mask = np.zeros((dif, dif), dtype=img.dtype)
-    mask[y_pos:y_pos+h, x_pos:x_pos+w] = img[:h, :w]
+    mask = np.zeros((dif, dif, 3), dtype=img.dtype)
+    mask[y_pos:y_pos+h, x_pos:x_pos+w, :] = img[:h, :w, :]
 
     return cv2.resize(mask, size, interpolation)
 
@@ -28,7 +28,7 @@ def evaluate(model, cropped_image):
 
     label_array = ['apple', 'bee']
 
-    cropped_image = np.expand_dims(cropped_image, axis=(0,-1))
+    cropped_image = np.expand_dims(cropped_image, axis=(0))
     prediction = np.argmax(model.predict(cropped_image) , axis=1)[0]
     return label_array[prediction]
 
