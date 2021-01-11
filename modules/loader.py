@@ -8,7 +8,7 @@ import zipfile
 
 class Loader:
 
-    def __init__(self, zip_remote, zip_folder_path, extraction_target):
+    def __init__(self, zip_remote, zip_folder_path, extraction_target = None):
         """
             zip_folder_path doit terminer par un separateur ('/' ou '\')
         """
@@ -43,9 +43,9 @@ class Loader:
 
     def __ask_download_zip():
         user_input = "PATRICK"
-        user_input = input("Télécharger le zip y/n ? ")
-        while user_input not in ["n", "N", "y", "Y"]:
-            user_input = input("Télécharger le zip y/n ? ")
+        user_input = input("Télécharger le fichier [y]/n ? ")
+        while user_input not in ["n", "N", "y", "Y", ""]:
+            user_input = input("Télécharger le zip [y]/n ? ")
 
         if user_input in ["n", "N"]:
             return False
@@ -89,7 +89,8 @@ class Loader:
                     sys.stdout.write("\r[%s%s]" % ('=' * done, ' ' * (50-done)) )    
                     sys.stdout.flush()
 
-        self._extract_data()
+        if self.extraction_target:
+            self._extract_data()
 
     def _extract_data(self):
         '''
