@@ -5,7 +5,7 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot_layer(model: Model, test_image: str, layer_index: int, cmap='plasma'):
+def plot_layer(model: Model, test_image: str, layer_index_list: list, cmap='plasma'):
 
     layer_outputs = [layer.output for layer in model.layers]
 
@@ -15,10 +15,11 @@ def plot_layer(model: Model, test_image: str, layer_index: int, cmap='plasma'):
     img_arr = np.expand_dims(img_arr, axis=0)
 
     activation_model = Model(inputs=model.input, outputs=layer_outputs)
-    activation = activation_model.predict(img_arr)[layer_index]
-    title = model.layers[layer_index].name
+    activations = activation_model.predict(img_arr)
     
-    __display_activation(activation, title, 8, 4, cmap=cmap)
+    for layer_index in layer_index_list:
+        title = model.layers[layer_index].name
+        __display_activation(activations[layer_index], title, 8, 2, cmap=cmap)
 
 def __display_activation(activation, title, col_size, row_size, cmap): 
     
