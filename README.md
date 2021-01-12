@@ -40,15 +40,16 @@ conda create --name <env> --file environment.txt
 ## Utilisation
 
 - Lancer [main.ipynb](https://github.com/Nicolas-Malgat/Reco_image/blob/main/main.ipynb "main.ipynb")
-	- Ce notebook va générer le modèle ( [model_maxime.h5](https://github.com/Nicolas-Malgat/Reco_image/blob/main/model_maxime.h5 "model_maxime.h5") ) pour l'évaluation des images.
+	- Ce notebook va générer le modèle ( [model.h5](https://github.com/Nicolas-Malgat/Reco_image/blob/main/model.h5 "model.h5") ) pour l'évaluation des images.
 
-- Lancer [analyse_image.ipynb](https://github.com/Nicolas-Malgat/Reco_image/blob/main/analyse_image.ipynb)
-	- Ce notebook charge une image dans la première cellule,
+- Lancer [prediction_image.ipynb](https://github.com/Nicolas-Malgat/Reco_image/blob/main/prediction_image.ipynb)
+	- Ce notebook charge une image dans la première cellule et effectue quelque tests,
 	   puis se découpe en deux parties:
-		- La première donne une prédiction sur l'image
-		- La seconde permet d'ajuster si nécessaire les filtres sur l'image
+		- La première d'ajuster les filtres sur l'image 
+		- La seconde donne une prédiction sur l'image
 
 ## Auteurs
 
 Maxime Veysseyre
+
 Nicolas Malgat
