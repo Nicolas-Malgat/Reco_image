@@ -11,9 +11,9 @@ Technologies:
 
 Quelles sont les taches ?
 
-1. charger les images
-ploter les images
-nettoyer les images ?
+1. 
+    a) charger les images
+    b) ploter les images
 2. creer le modele
 3. entrainer le modele
 4. ploter le modele
@@ -22,3 +22,20 @@ nettoyer les images ?
 
 Proposition: fork le projet de reconnaissance de lettre du prof Thomas 
 le git en question https://github.com/Authfix/nuage-compta-data-science-exercice
+
+__________________________________________________________________________________________
+
+On a discute avec thomas, pourquoi pas analyser seulement une dimension de l'image (RGB), c'est du bonus car pas vraiment besoin.
+
+a tester
+deux familles diffrentes, 
+deux familles proches et 
+expliquer pourquoi l'algo confond, 
+trouver la solution en modifiant le modele
+
+plot
+	Kernel (3, 5, 7, 15)
+	max pooling (petite)
+	convolution (grande)
+
+hidden layer, filtre interessant ? (Thomas cassagne)
