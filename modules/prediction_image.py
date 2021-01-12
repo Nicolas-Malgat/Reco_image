@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+from math import sqrt
 
 def resize_image(img, size=(32,32)):
 
@@ -24,9 +25,14 @@ def resize_image(img, size=(32,32)):
 
     return cv2.resize(mask, size, interpolation)
 
-def evaluate(model, cropped_image):
+def redimensionner(img, taille=500):
 
-    label_array = ['apple', 'bee']
+    area = img.shape[0] * img.shape[1]
+    ratio = sqrt( pow(taille, 2) / area )
+    dim = round(img.shape[1] * ratio), round(img.shape[0] * ratio)
+    return cv2.resize(img, dim)
+
+def evaluate(model, cropped_image, label_array):
 
     cropped_image = np.expand_dims(cropped_image, axis=(0))
     prediction = np.argmax(model.predict(cropped_image) , axis=1)[0]
