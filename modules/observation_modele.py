@@ -19,7 +19,7 @@ def plot_layer(model: Model, test_image: str, layer_index_list: list, cmap='plas
     
     for layer_index in layer_index_list:
         title = model.layers[layer_index].name
-        __display_activation(activations[layer_index], title, 8, 2, cmap=cmap)
+        __display_activation(activations[layer_index], title, 8, 4, cmap=cmap)
 
 def __display_activation(activation, title, col_size, row_size, cmap): 
     

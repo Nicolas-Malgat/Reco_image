@@ -46,7 +46,7 @@ class Splitting():
             
             if explorer:
                 subprocess.Popen(f'explorer /select,"{dossier_cible}"')
-            return dossier_cible
+        return dossier_cible
 
     @staticmethod
     def __create_path(dossier):
